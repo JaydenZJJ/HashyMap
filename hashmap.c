@@ -46,6 +46,7 @@ void hash_map_put_entry_move(struct hash_map* map, void* k, void* v) {
 	else{
 		// if the head of LL is not NULL
 		if (map->bucket[index]!=NULL){
+			pthread_mutex_lock(&(map->bucket[index]->lock));
 			// check if HEAD is k, then remove head, put in new head and tail
 			if (map->cmp(map->bucket[index]->key,k)==1){
 				if (map->bucket[index]->next == NULL){
