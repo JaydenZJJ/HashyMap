@@ -118,7 +118,7 @@ void hash_map_put_entry_move(struct hash_map* map, void* k, void* v) {
 	pthread_mutex_unlock(&(map->bucket[index]->lock));
 	// check if the load factor is approaching the limit
 	// resize the map is it's beyond 0.75
-	if ((double)map->curr_size/map->max_size>0.5){
+	if ((double)map->curr_size/map->max_size>0.75){
 		hash_map_resize(map);
 	}
 }
